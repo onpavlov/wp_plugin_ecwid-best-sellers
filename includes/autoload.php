@@ -14,7 +14,7 @@ spl_autoload_register(function($class) use ($require_paths) {
 	foreach ( $require_paths as $path ) {
 		$require = __DIR__ . $path . '/' . $file;
 
-		if (is_file($require)) {
+		if (is_file($require) && (strpos($file, ECWID_BEST_SELLERS_PLUGIN_BASENAME) !== false)) {
 			require_once $require;
 		}
 	}

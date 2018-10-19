@@ -1,0 +1,35 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Ecwid Best sellers\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-10-19 14:56+0000\n"
+"PO-Revision-Date: 2018-10-19 19:04+0400\n"
+"Language-Team: \n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"Last-Translator: \n"
+"Language: ru\n"
+
+#: includes/class-ecwid-best-sellers-plugin.php:10
+#, php-format
+msgid ""
+"<a href=\"%s\"><-- Back</a><br><br><p style=\"text-align: center\">You "
+"should install and activate <a href=\"%s\" target=\"_blank\">Ecwid Shopping "
+"Cart</a> plugin</p>"
+msgstr ""
+"<a href=\"%s\"><--Назад </а><br><br><p style=\"text-align: center\">Вы "
+"должны установить и активировать плагин <a href=\"%s\" target=\"_blank"
+"\">Ecwid Shopping Cart</а></p>"
+
+#: includes/class-ecwid-best-sellers-plugin.php:30
+#, php-format
+msgid ""
+"You should install and activate <a href=\"%s\" target=\"_blank\">Ecwid "
+"Shopping Cart</a> plugin"
+msgstr ""
+"Вы должны установить и активировать плагин <a href=\"%s\" target=\"_blank"
+"\">Ecwid Shopping Cart</а>"

@@ -1,0 +1,46 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Ecwid Best sellers\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-10-19 14:55+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/"
+
+#: includes/class-ecwid-best-sellers-plugin.php:10
+#, php-format
+msgid ""
+"\"><-- Back</a><br><br><p style=\"text-align: center\">You should install "
+"and activate <a href=\"%s\" target=\"_blank\">Ecwid Shopping Cart</a> "
+"plugin</p>"
+msgstr ""
+
+#. Description of the plugin
+msgid "Additional plugin for Ecwid. Shows best sellers products."
+msgstr ""
+
+#. Name of the plugin
+msgid "Ecwid Best sellers"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://vk.com/nameless4you"
+msgstr ""
+
+#. Author of the plugin
+msgid "Oleg Pavlov"
+msgstr ""
+
+#: includes/class-ecwid-best-sellers-plugin.php:30
+#, php-format
+msgid ""
+"You should install and activate <a href=\"%s\" target=\"_blank\">Ecwid "
+"Shopping Cart</a> plugin"
+msgstr ""

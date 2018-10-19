@@ -24,7 +24,7 @@ class Ecwid_Best_Sellers_Messages
 		update_option(ECWID_BEST_SELLERS_PLUGIN_BASENAME . '_admin_errors', $errors);
 	}
 
-	private static function admin_notices() {
+	public static function admin_notices() {
 		if ($notices = get_option(ECWID_BEST_SELLERS_PLUGIN_BASENAME . '_admin_notices')) {
 			foreach ($notices as $notice) {
 				echo "<div class='updated'><p>$notice</p></div>";
@@ -33,12 +33,18 @@ class Ecwid_Best_Sellers_Messages
 		}
 	}
 
-	private static function admin_errors() {
+	public static function admin_errors() {
 		if ($errors = get_option(ECWID_BEST_SELLERS_PLUGIN_BASENAME . '_admin_errors')) {
 			foreach ($errors as $error) {
 				echo "<div class='error'><p>$error</p></div>";
 			}
 			delete_option(ECWID_BEST_SELLERS_PLUGIN_BASENAME . '_admin_errors');
 		}
+	}
+
+	public static function clear_all()
+	{
+		delete_option(ECWID_BEST_SELLERS_PLUGIN_BASENAME . '_admin_notices');
+		delete_option(ECWID_BEST_SELLERS_PLUGIN_BASENAME . '_admin_errors');
 	}
 }
