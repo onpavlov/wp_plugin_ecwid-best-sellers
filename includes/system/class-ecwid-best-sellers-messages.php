@@ -1,11 +1,15 @@
 <?php
+
+namespace Ecwid\Best_Sellers;
+
 /**
- * Class Ecwid_Best_Sellers_Messages
+ * Class Messages
+ * @package Ecwid\Best_Sellers
  */
 
-class Ecwid_Best_Sellers_Messages
+class Messages
 {
-	public static function show_messages() {
+	public static function showMessages() {
 		add_action('admin_notices', [__CLASS__, 'admin_notices']);
 		add_action('admin_notices', [__CLASS__, 'admin_errors']);
 	}
@@ -42,7 +46,7 @@ class Ecwid_Best_Sellers_Messages
 		}
 	}
 
-	public static function clear_all()
+	public static function clearAll()
 	{
 		delete_option(ECWID_BEST_SELLERS_PLUGIN_BASENAME . '_admin_notices');
 		delete_option(ECWID_BEST_SELLERS_PLUGIN_BASENAME . '_admin_errors');

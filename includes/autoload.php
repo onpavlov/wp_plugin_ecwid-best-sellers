@@ -6,12 +6,15 @@
 
 $require_paths = [
 	'/',
-	'/system'
+    '/system',
+    '/widgets',
+    '/classes/product'
 ];
 
 spl_autoload_register(function($class) use ($require_paths) {
-	$file = 'class-' . str_replace('_', '-', strtolower($class)) . '.php';
-	foreach ( $require_paths as $path ) {
+	$file = 'class-' . str_replace(['\\', '_'], '-', strtolower($class)) . '.php';
+
+	foreach ($require_paths as $path) {
 		$require = __DIR__ . $path . '/' . $file;
 
 		if (is_file($require) && (strpos($file, ECWID_BEST_SELLERS_PLUGIN_BASENAME) !== false)) {

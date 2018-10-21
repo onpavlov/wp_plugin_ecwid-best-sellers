@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ecwid Best sellers\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-19 14:56+0000\n"
+"POT-Creation-Date: 2018-10-20 19:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/"
 
-#: includes/class-ecwid-best-sellers-plugin.php:10
+#: includes/class-ecwid-best-sellers-plugin.php:19
 #, php-format
 msgid ""
 "<a href=\"%s\"><-- Back</a><br><br><p style=\"text-align: center\">You "
@@ -22,9 +22,23 @@ msgid ""
 "Cart</a> plugin</p>"
 msgstr ""
 
-#: includes/class-ecwid-best-sellers-plugin.php:30
+#: includes/class-ecwid-best-sellers-plugin.php:40
 #, php-format
 msgid ""
-"You should install and activate <a href=\"%s\" target=\"_blank\">Ecwid "
-"Shopping Cart</a> plugin"
+"<b>Best Sellers for Ecwid</b>: You should install and activate <a "
+"href=\"%s\" target=\"_blank\">Ecwid Shopping Cart</a> plugin"
+msgstr ""
+
+#: includes/widgets/class-ecwid-best-sellers-widget-list.php:18
+msgid "Displays a list of best seller products from Ecwid shop"
+msgstr ""
+
+#. Name of the plugin
+#: includes/widgets/class-ecwid-best-sellers-widget-list.php:20
+#: includes/widgets/class-ecwid-best-sellers-widget-list.php:142
+msgid "Best Sellers for Ecwid"
+msgstr ""
+
+#: includes/widgets/class-ecwid-best-sellers-widget-list.php:146
+msgid "Number of products to show"
 msgstr ""
