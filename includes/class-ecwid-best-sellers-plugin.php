@@ -36,7 +36,7 @@ class Plugin
             Messages::clearAll();
 
             if (!self::isEcwidMainPluginActive()) {
-                Messages::add_error(
+                Messages::addError(
                     sprintf(__('<b>Best Sellers for Ecwid</b>: You should install and activate <a href="%s" target="_blank">Ecwid Shopping Cart</a> plugin', 'ecwid-best-sellers'), 'https://wordpress.org/plugins/ecwid-shopping-cart/')
                 );
             }

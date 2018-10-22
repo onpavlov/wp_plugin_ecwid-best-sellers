@@ -43,8 +43,9 @@ class Widget_List extends \WP_Widget
         $product->setLink('http://kinder.com');
         $product->setPicture('https://www.mensjournal.com/wp-content/uploads/mf/1_loreal.jpg?w=800');
         $product->setPrice(99.99);
+        $products = [$product];
 
-        $this->renderTemplate('products_list', ['product' => $product]);
+        $this->renderTemplate('products_list', ['products' => $products]);
     }
 
     /**
@@ -145,6 +146,6 @@ class Widget_List extends \WP_Widget
     private function renderTemplate($template, $variables = [])
     {
         extract($variables);
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/wp-content/plugins/' . ECWID_BEST_SELLERS_PLUGIN_BASENAME . '/templates/' . $template . '.php';
+        require_once $_SERVER['DOCUMENT_ROOT'] . '/wp-content/plugins/' . ECWID_BS_PLUGIN_BASENAME . '/templates/' . $template . '.php';
     }
 }

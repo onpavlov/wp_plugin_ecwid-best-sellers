@@ -12,8 +12,8 @@ use Ecwid\Best_Sellers\Plugin;
 
 load_plugin_textdomain( 'ecwid-best-sellers', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 
-define('ECWID_BEST_SELLERS_VERSION', '1.0.0');
-define('ECWID_BEST_SELLERS_PLUGIN_PATH', plugin_basename(__FILE__));
+define('ECWID_BS_VERSION', '1.0.0');
+define('ECWID_BS_PLUGIN_PATH', plugin_basename(__FILE__));
 
 require_once 'includes/const.php';
 require_once 'includes/autoload.php';

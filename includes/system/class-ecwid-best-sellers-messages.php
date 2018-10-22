@@ -10,45 +10,45 @@ namespace Ecwid\Best_Sellers;
 class Messages
 {
 	public static function showMessages() {
-		add_action('admin_notices', [__CLASS__, 'admin_notices']);
-		add_action('admin_notices', [__CLASS__, 'admin_errors']);
+		add_action('admin_notices', [__CLASS__, 'adminNotices']);
+		add_action('admin_notices', [__CLASS__, 'adminErrors']);
 	}
 
-	public static function add_notice($message = '')
+	public static function addNotice($message = '')
 	{
-		$notices= get_option(ECWID_BEST_SELLERS_PLUGIN_BASENAME . '_admin_notices', []);
+		$notices= get_option(ECWID_BS_PLUGIN_BASENAME . '_admin_notices', []);
 		$notices[]= $message;
-		update_option(ECWID_BEST_SELLERS_PLUGIN_BASENAME . '_admin_notices', $notices);
+		update_option(ECWID_BS_PLUGIN_BASENAME . '_admin_notices', $notices);
 	}
 
-	public static function add_error($message = '')
+	public static function addError($message = '')
 	{
-		$errors = get_option(ECWID_BEST_SELLERS_PLUGIN_BASENAME . '_admin_errors', []);
+		$errors = get_option(ECWID_BS_PLUGIN_BASENAME . '_admin_errors', []);
 		$errors[]= $message;
-		update_option(ECWID_BEST_SELLERS_PLUGIN_BASENAME . '_admin_errors', $errors);
+		update_option(ECWID_BS_PLUGIN_BASENAME . '_admin_errors', $errors);
 	}
 
-	public static function admin_notices() {
-		if ($notices = get_option(ECWID_BEST_SELLERS_PLUGIN_BASENAME . '_admin_notices')) {
+	public static function adminNotices() {
+		if ($notices = get_option(ECWID_BS_PLUGIN_BASENAME . '_admin_notices')) {
 			foreach ($notices as $notice) {
 				echo "<div class='updated'><p>$notice</p></div>";
 			}
-			delete_option(ECWID_BEST_SELLERS_PLUGIN_BASENAME . '_admin_notices');
+			delete_option(ECWID_BS_PLUGIN_BASENAME . '_admin_notices');
 		}
 	}
 
-	public static function admin_errors() {
-		if ($errors = get_option(ECWID_BEST_SELLERS_PLUGIN_BASENAME . '_admin_errors')) {
+	public static function adminErrors() {
+		if ($errors = get_option(ECWID_BS_PLUGIN_BASENAME . '_admin_errors')) {
 			foreach ($errors as $error) {
 				echo "<div class='error'><p>$error</p></div>";
 			}
-			delete_option(ECWID_BEST_SELLERS_PLUGIN_BASENAME . '_admin_errors');
+			delete_option(ECWID_BS_PLUGIN_BASENAME . '_admin_errors');
 		}
 	}
 
 	public static function clearAll()
 	{
-		delete_option(ECWID_BEST_SELLERS_PLUGIN_BASENAME . '_admin_notices');
-		delete_option(ECWID_BEST_SELLERS_PLUGIN_BASENAME . '_admin_errors');
+		delete_option(ECWID_BS_PLUGIN_BASENAME . '_admin_notices');
+		delete_option(ECWID_BS_PLUGIN_BASENAME . '_admin_errors');
 	}
 }
