@@ -28,24 +28,28 @@ class Widget_List extends \WP_Widget
      */
 	public function widget($args, $instance)
     {
-        $before_widget = $before_title = $after_title = $after_widget = '';
-        extract($args);
-        $title = empty($instance['title']) ? '' : $instance['title'];
-        $title = apply_filters('widget_title', $title);
+        if (Error::getInstance()->hasErrors()) {
+            Error::getInstance()->showErrors();
+        } else {
+            $before_widget = $before_title = $after_title = $after_widget = '';
+            extract($args);
+            $title = empty($instance['title']) ? '' : $instance['title'];
+            $title = apply_filters('widget_title', $title);
 
-        if ($title) {
-            echo $before_title . $title . $after_title;
+            if ($title) {
+                echo $before_title . $title . $after_title;
+            }
+
+            $product = new Product();
+            $product->setId(123);
+            $product->setName('Kinder Surprise');
+            $product->setLink('http://kinder.com');
+            $product->setPicture('https://www.mensjournal.com/wp-content/uploads/mf/1_loreal.jpg?w=800');
+            $product->setPrice(99.99);
+            $products = [$product];
+
+            $this->renderTemplate('products_list', ['products' => $products]);
         }
-
-        $product = new Product();
-        $product->setId(123);
-        $product->setName('Kinder Surprise');
-        $product->setLink('http://kinder.com');
-        $product->setPicture('https://www.mensjournal.com/wp-content/uploads/mf/1_loreal.jpg?w=800');
-        $product->setPrice(99.99);
-        $products = [$product];
-
-        $this->renderTemplate('products_list', ['products' => $products]);
     }
 
     /**
