@@ -7,7 +7,8 @@
 $require_paths = [
 	'/',
     '/system',
-    '/widgets',
+	'/widgets',
+	'/helpers',
     '/classes/product'
 ];
 

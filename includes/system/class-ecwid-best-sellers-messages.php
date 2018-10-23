@@ -14,6 +14,9 @@ class Messages
 		add_action('admin_notices', [__CLASS__, 'adminErrors']);
 	}
 
+	/**
+	 * @param string $message
+	 */
 	public static function addNotice($message = '')
 	{
 		$notices= get_option(ECWID_BS_PLUGIN_BASENAME . '_admin_notices', []);
@@ -21,6 +24,9 @@ class Messages
 		update_option(ECWID_BS_PLUGIN_BASENAME . '_admin_notices', $notices);
 	}
 
+	/**
+	 * @param string $message
+	 */
 	public static function addError($message = '')
 	{
 		$errors = get_option(ECWID_BS_PLUGIN_BASENAME . '_admin_errors', []);

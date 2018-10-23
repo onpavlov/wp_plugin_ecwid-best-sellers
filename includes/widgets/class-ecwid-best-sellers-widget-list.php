@@ -60,11 +60,16 @@ class Widget_List extends \WP_Widget
      */
     public function form($instance)
     {
+	    if (Error::getInstance()->hasErrors()) {
+		    Error::getInstance()->showErrors();
+	    }
+
         $default_args = [];
         foreach ($this->getFormFields() as $field) {
             $default_args[$field['name']] = $field['default'];
         }
 
+	    $api = new Api();
         $instance = wp_parse_args((array) $instance, $default_args);
 
         foreach ($this->getFormFields() as $field) {
@@ -94,6 +99,15 @@ class Widget_List extends \WP_Widget
                 $this->get_field_name($field['name']),
                 $value
             );
+        }
+
+        if (empty(get_option(ECWID_BS_PLUGIN_BASENAME . '_api_token'))) {
+	        $template = '<p><b>' . __('You should provide access to your Ecwid shop for using widget', 'ecwid-best-sellers') . '</b></p>';
+	        $template .= '<a href="' . $api->getLinkForOAuth(home_url() . $_SERVER['SCRIPT_NAME'])
+	                     . '" class="button button-primary" style="margin-bottom: 20px">'
+	                     . __('Provide access', 'ecwid-best-sellers') . '</a>';
+
+	        print($template);
         }
     }
 
