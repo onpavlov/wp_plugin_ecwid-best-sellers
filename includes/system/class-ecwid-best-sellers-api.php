@@ -22,7 +22,7 @@ class Api
 	 *
 	 * @return string
 	 */
-    public function getLinkForOAuth($redirectUrl = '')
+    public function getOAuthLink($redirectUrl = '')
     {
     	if (empty($redirectUrl)) {
     		global $wp;
@@ -65,10 +65,16 @@ class Api
 	    if (!empty($result['body'])) {
 		    $body = json_decode($result['body']);
 		    Error::getInstance()->addError($body->error_description);
-	    } else {
-		    Error::getInstance()->addError(__('Undefined error', 'ecwid-best-sellers'));
 	    }
 
     	return false;
     }
+
+	/**
+	 * @return bool
+	 */
+	public function hasAccess()
+	{
+		return (!empty(get_option(ECWID_BS_PLUGIN_BASENAME . '_api_token')) && is_active_widget(false, false, 'ecwid_bs_list'));
+	}
 }

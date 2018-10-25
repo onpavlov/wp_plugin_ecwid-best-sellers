@@ -14,9 +14,13 @@ load_plugin_textdomain( 'ecwid-best-sellers', false, dirname( plugin_basename( _
 
 define('ECWID_BS_VERSION', '1.0.0');
 define('ECWID_BS_PLUGIN_PATH', plugin_basename(__FILE__));
+define('ECWID_BS_PLUGIN_URL', plugin_dir_url(__FILE__));
+
+update_option('ecwid_bs_plugin_version', ECWID_BS_VERSION);
 
 require_once 'includes/const.php';
 require_once 'includes/autoload.php';
+require_once 'includes/assets.php';
 
 register_activation_hook(__FILE__, [Plugin::class, 'activate']);
 register_deactivation_hook(__FILE__, [Plugin::class, 'deactivate']);

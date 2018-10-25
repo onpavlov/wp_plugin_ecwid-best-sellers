@@ -8,7 +8,6 @@ class Plugin
 
 	public static function init()
     {
-        self::init_ecwid();
         self::checkEcwidMainPlugin();
         self::init_widgets();
     }
@@ -53,14 +52,8 @@ class Plugin
 		return in_array(self::ECWID_MAIN_PLUGIN, get_option('active_plugins'));
 	}
 
-	private static function init_ecwid()
-    {
-        // todo
-    }
-
 	private static function init_widgets()
     {
-//        if (Ecwid_Api_V3::is_available()) {
         add_action('widgets_init', function() {
         	if (!empty($_GET['code'])) {
 		        (new Api())->getToken(htmlspecialchars($_GET['code']));
@@ -68,6 +61,5 @@ class Plugin
 
             register_widget(Widget_List::class);
         });
-//        }
     }
 }

@@ -48,7 +48,7 @@ class Widget_List extends \WP_Widget
             $product->setPrice(99.99);
             $products = [$product];
 
-            $this->renderTemplate('products_list', ['products' => $products]);
+            Template::renderTemplate('products_list', ['products' => $products]);
         }
     }
 
@@ -69,7 +69,6 @@ class Widget_List extends \WP_Widget
             $default_args[$field['name']] = $field['default'];
         }
 
-	    $api = new Api();
         $instance = wp_parse_args((array) $instance, $default_args);
 
         foreach ($this->getFormFields() as $field) {
@@ -101,14 +100,18 @@ class Widget_List extends \WP_Widget
             );
         }
 
-        if (empty(get_option(ECWID_BS_PLUGIN_BASENAME . '_api_token'))) {
-	        $template = '<p><b>' . __('You should provide access to your Ecwid shop for using widget', 'ecwid-best-sellers') . '</b></p>';
-	        $template .= '<a href="' . $api->getLinkForOAuth(home_url() . $_SERVER['SCRIPT_NAME'])
-	                     . '" class="button button-primary" style="margin-bottom: 20px">'
-	                     . __('Provide access', 'ecwid-best-sellers') . '</a>';
+	    $api = new Api();
 
-	        print($template);
-        }
+	    $popupBody = '<div style="display: none" id="fancybox-get-access"><p><b>' . __('You should provide access to your Ecwid shop for using widget', 'ecwid-best-sellers') . '</b></p>';
+	    $popupBody .= '<p style="text-align: center"><a href="' . $api->getOAuthLink( home_url() . $_SERVER['SCRIPT_NAME'])
+	                  . '" class="button button-primary" style="margin-bottom: 20px">'
+	                  . __('Provide access', 'ecwid-best-sellers') . '</a></p></div>';
+
+	    Template::renderTemplate('popup', ['popup_body' => $popupBody]);
+
+	    if (!$api->hasAccess()) {
+
+	    }
     }
 
     /**
@@ -159,11 +162,5 @@ class Widget_List extends \WP_Widget
                 'max' => self::LIST_MAX_COUNT
             ]
         ];
-    }
-
-    private function renderTemplate($template, $variables = [])
-    {
-        extract($variables);
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/wp-content/plugins/' . ECWID_BS_PLUGIN_BASENAME . '/templates/' . $template . '.php';
     }
 }
