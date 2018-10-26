@@ -75,6 +75,6 @@ class Api
 	 */
 	public function hasAccess()
 	{
-		return (!empty(get_option(ECWID_BS_PLUGIN_BASENAME . '_api_token')) && is_active_widget(false, false, 'ecwid_bs_list'));
+		return !empty(get_option(ECWID_BS_PLUGIN_BASENAME . '_api_token'));
 	}
 }

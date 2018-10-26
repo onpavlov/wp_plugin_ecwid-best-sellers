@@ -14,7 +14,7 @@ class Widget_List extends \WP_Widget
 
 	public function __construct() {
         $widget_ops = [
-            'classname' => 'widget_ecwid_best_sellers_list',
+            'classname' => 'widget_ecwid_bs_list',
             'description' => __("Displays a list of best seller products from Ecwid shop", 'ecwid-best-sellers')
         ];
         parent::__construct('ecwid_bs_list', __('Best Sellers for Ecwid', 'ecwid-best-sellers'), $widget_ops);
@@ -64,13 +64,16 @@ class Widget_List extends \WP_Widget
 		    Error::getInstance()->showErrors();
 	    }
 
+        $api = new Api();
         $default_args = [];
+
         foreach ($this->getFormFields() as $field) {
             $default_args[$field['name']] = $field['default'];
         }
 
         $instance = wp_parse_args((array) $instance, $default_args);
 
+        printf('<div class="%s">', $this->widget_options['classname']);
         foreach ($this->getFormFields() as $field) {
             $template = '<p><label for="%s">%s:<input style="%s" id="%s" name="%s" type="text" value="%s" /></label></p>';
 
@@ -99,18 +102,19 @@ class Widget_List extends \WP_Widget
                 $value
             );
         }
-
-	    $api = new Api();
-
-	    $popupBody = '<div style="display: none" id="fancybox-get-access"><p><b>' . __('You should provide access to your Ecwid shop for using widget', 'ecwid-best-sellers') . '</b></p>';
-	    $popupBody .= '<p style="text-align: center"><a href="' . $api->getOAuthLink( home_url() . $_SERVER['SCRIPT_NAME'])
-	                  . '" class="button button-primary" style="margin-bottom: 20px">'
-	                  . __('Provide access', 'ecwid-best-sellers') . '</a></p></div>';
-
-	    Template::renderTemplate('popup', ['popup_body' => $popupBody]);
+        print('</div>');
 
 	    if (!$api->hasAccess()) {
+            $popupBody = '<p><b>' . __('You should provide access to your Ecwid shop for using widget', 'ecwid-best-sellers') . '</b></p>';
+            $popupBody .= '<p style="text-align: center"><a href="' . $api->getOAuthLink( home_url() . $_SERVER['SCRIPT_NAME'])
+                . '" class="button button-primary" style="margin-bottom: 20px">'
+                . __('Provide access', 'ecwid-best-sellers') . '</a></p>';
 
+            printf(
+                '<script type="text/javascript">PopupEcwidBs.init(\'%s\', \'%s\')</script>',
+                $popupBody,
+                $this->widget_options['classname']
+            );
 	    }
     }
 

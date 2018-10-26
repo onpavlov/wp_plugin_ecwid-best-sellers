@@ -12,9 +12,8 @@ class Template
 
 	public static function renderTemplate($template, $variables = [])
 	{
-		self::$templatePath = $_SERVER['DOCUMENT_ROOT'] . self::$templatePath;
 		extract($variables);
 
-		require_once self::$templatePath . $template . '.php';
+		require_once $_SERVER['DOCUMENT_ROOT'] . self::$templatePath . $template . '.php';
 	}
 }
