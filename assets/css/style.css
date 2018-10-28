@@ -1,0 +1,193 @@
+.ecwid-bs-initial-productsList-content {
+    display: none;
+}
+
+.ecwid-bs-productsList ul li.hide {
+    display: none;
+}
+
+.ecwid-bs-productsList {
+    overflow: hidden;
+    position: relative;
+}
+
+
+.ecwid-bs-productsList ul,
+#widgets .ecwid-bs-productsList ul
+{
+    padding: 0px;
+    margin: 0px;
+}
+
+.ecwid-bs-productsList ul li {
+    list-style: none;
+    display: block;
+    padding: 0px;
+}
+
+.ecwid-bs-productsList ul li a,
+#widgets .ecwid-bs-productsList ul li a
+{
+    display: block;
+    position: relative;
+
+    border-radius: 5px;
+    overflow: hidden;
+
+    background: white;
+}
+
+.ecwid-bs-productsList ul li a {
+    opacity : .9;
+}
+
+.ecwid-bs-productsList ul li:hover a {
+    opacity: 1;
+}
+
+.ecwid-bs-productsList .ecwid-bs-productsList-name {
+    color: #1E7EC8;
+}
+
+html#ecwid_html body#ecwid_body .ecwid-bs-productsList .ecwid-bs-productsList-image .ecwid-bs-noimage {
+    background-color: white;
+    opacity: 1;
+}
+
+.ecwid-bs-productsList ul li .ecwid-bs-productsList-name,
+.ecwid-bs-productsList ul li .ecwid-bs-productsList-price,
+.ecwid-bs-productsList ul li .ecwid-bs-productsList-image {
+    width: 100%;
+    text-align: center;
+}
+
+.ecwid-bs-productsList.width-m li .ecwid-bs-productsList-image img {
+    text-align: center;
+    max-width:100%;
+    max-height: 300px;
+}
+
+html#ecwid_html body#ecwid_body .ecwid-bs-productsList ul li .ecwid-bs-productsList-name
+{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+html#ecwid_html body#ecwid_body .ecwid-bs-productsList ul li .ecwid-bs-productsList-price
+{
+    font-size: 14px;
+}
+
+/*
+ * Narrow layout
+ */
+.ecwid-bs-productsList.width-s ul li .ecwid-bs-productsList-name,
+.ecwid-bs-productsList.width-s ul li .ecwid-bs-productsList-price
+{
+    display: none;
+}
+
+.ecwid-bs-productsList.width-s ul li {
+    padding: 5px 0px;
+}
+
+/*
+ * Medium width layout
+ */
+
+.ecwid-bs-productsList.width-m ul li {
+    padding: 10px 3px 14px;
+}
+
+.ecwid-bs-productsList.width-m ul li .ecwid-bs-productsList-image {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+html#ecwid_html body#ecwid_body .ecwid-bs-productsList.width-m ul li .ecwid-bs-productsList-name {
+    padding-top: 3px;
+}
+
+html#ecwid_html body#ecwid_body .ecwid-bs-productsList.width-m ul li .ecwid-bs-productsList-price
+{
+    padding-bottom: 8px;
+}
+
+.ecwid-bs-productsList.width-m ul li .ecwid-bs-productsList-price,
+.ecwid-bs-productsList.width-m ul li .ecwid-bs-productsList-name {
+    width: auto;
+    margin: 0 5px;
+}
+
+
+/*
+ * Wide layout
+ */
+.ecwid-bs-productsList.width-l ul li
+{
+    margin: 6px 0px;
+}
+
+.ecwid-bs-productsList.width-l ul li a {
+    min-height: 60px;
+}
+
+
+.ecwid-bs-productsList.width-l ul li .ecwid-bs-productsList-image,
+.ecwid-bs-productsList.width-l ul li .ecwid-bs-productsList-name,
+.ecwid-bs-productsList.width-l ul li .ecwid-bs-productsList-price
+{
+    text-align: left;
+}
+
+.ecwid-bs-productsList.width-l ul li .ecwid-bs-productsList-image {
+    display: table-cell;
+    vertical-align: middle;
+    height: 60px;
+    padding: 5px;
+}
+
+.ecwid-bs-productsList.width-l ul li .ecwid-bs-productsList-image img {
+    width: auto;
+    max-width: 75px;
+    display: block;
+    margin: 0px auto;
+}
+
+html#ecwid_html body#ecwid_body .ecwid-bs-productsList div.ecwid-bs-productsList-image.ecwid-bs-noimage {
+    background-position: 50% 50%;
+    background-size: 55px 55px;
+    opacity: 1;
+    width: 75px;
+    height: 60px;
+    padding: 5px;
+}
+
+.ecwid-bs-productsList.width-l ul li .ecwid-bs-productsList-name,
+.ecwid-bs-productsList.width-l ul li .ecwid-bs-productsList-price
+{
+    width: auto;
+    position: absolute;
+    left: 93px;
+    right: 0px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.ecwid-bs-productsList.width-l ul li .ecwid-bs-productsList-name {
+    bottom: 50%;
+    margin-bottom: 4px;
+}
+
+
+.ecwid-bs-productsList.width-l ul li .ecwid-bs-productsList-price {
+    top: 50%;
+    margin-top: -2px;
+}
+
+html#ecwid_html body#ecwid_body .ecwid-bs-productsList ul li .ecwid-bs-productsList-price
+{
+    font-size: 14px;
+}
