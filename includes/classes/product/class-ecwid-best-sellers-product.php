@@ -11,7 +11,7 @@ namespace Ecwid\Best_Sellers;
  * @property string $picture
  * @property float $price
  */
-class Product extends Base_Product
+class Product extends Api_Entity
 {
     private $id;
     private $name;
@@ -19,19 +19,10 @@ class Product extends Base_Product
     private $picture;
     private $price;
 
-    private $api;
+	const ENTITY_CODE = 'products';
+	const OFFSET = 100;
 
-    public function __construct(Api $api = null)
-    {
-        $this->api = $api;
-    }
-
-    public function getById($id)
-    {
-        // TODO: Implement getById() method.
-    }
-
-    public function __get($name)
+	public function __get($name)
     {
         if (isset($this->{$name})) {
             return $this->{$name};
@@ -39,6 +30,11 @@ class Product extends Base_Product
 
         return false;
     }
+
+	public function getById($id) {
+		$result = $this->find(['productId' => $id])->items;
+		return empty($result) ? [] : $result;
+	}
 
     /**
      * @param mixed $id

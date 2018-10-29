@@ -9,7 +9,9 @@ $require_paths = [
     '/system',
 	'/widgets',
 	'/helpers',
-    '/classes/product'
+	'/classes/product',
+	'/classes/orders',
+	'/classes/base',
 ];
 
 spl_autoload_register(function($class) use ($require_paths) {

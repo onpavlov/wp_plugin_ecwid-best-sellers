@@ -93,11 +93,10 @@ class Api
 	/**
 	 * @return array|mixed|null|object
 	 */
-	public function getOrders()
+	public function getList($entity, $params = [])
 	{
-		$result = Http_Helper::get(self::ECWID_API_URL . $this->storeId . '/orders', [
-			'token' => $this->token,
-		]);
+		$result = Http_Helper::get(self::ECWID_API_URL . $this->storeId . '/' . $entity,
+			array_merge(['token' => $this->token], $params));
 
 		if (!$result['body']) {
 			$response = $result['http_response']->get_response_object();

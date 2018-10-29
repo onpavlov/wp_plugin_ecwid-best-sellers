@@ -44,15 +44,20 @@ class Widget_List extends \WP_Widget
                 echo $before_title . $title . $after_title;
             }
 
-            $this->api->getOrders();
+            $lastOrders = (new Orders($this->api))->getLastMonthOrders();
+            $productIds = [];
 
-            $product = new Product();
-            $product->setId(123);
-            $product->setName('Kinder Surprise');
-            $product->setLink('http://kinder.com');
-            $product->setPicture('https://www.mensjournal.com/wp-content/uploads/mf/1_loreal.jpg?w=800');
-            $product->setPrice(99.99);
-            $products = [$product];
+	        foreach ($lastOrders as $order) {
+		        foreach ($order->items as $product) {
+					if ($product->productAvailable) {
+						$productIds[$product->productId] = isset($productIds[$product->productId])
+							? $productIds[$product->productId] + $product->quantity : $product->quantity;
+					}
+		        }
+            }
+
+	        arsort($productIds);
+	        $products = $this->filterProducts($productIds, $instance['number_of_products']);
 
             Template::renderTemplate('products_list', ['products' => $products, 'has_access' => $this->api->hasAccess()]);
         }
@@ -153,5 +158,44 @@ class Widget_List extends \WP_Widget
                 'max' => self::LIST_MAX_COUNT
             ]
         ];
+    }
+
+	/**
+	 * @param $productIds
+	 * @param $count
+	 *
+	 * @return array
+	 */
+    private function filterProducts($productIds, $count)
+    {
+    	$data = (new Product($this->api))->find([
+    		'productId' => implode(',', array_keys($productIds)),
+		    'baseUrl' => get_site_url()
+	    ]);
+	    $total = $data->total;
+	    $allProducts = $data->items;
+		$result = [];
+		$cnt = 0;
+
+	    while (($cnt < $count) && ($cnt < $total)) {
+			$product = current($allProducts);
+
+			if (($product->inStock || $product->unlimited) && $product->enabled) {
+				$prod = new Product();
+
+				$prod->setId($product->id);
+				$prod->setName($product->name);
+				$prod->setLink($product->url);
+				$prod->setPicture($product->smallThumbnailUrl);
+				$prod->setPrice($product->priceInProductList);
+
+				$result[$product->id] = $prod;
+				$cnt = count($result);
+			}
+
+			next($allProducts);
+		}
+
+		return $result;
     }
 }
