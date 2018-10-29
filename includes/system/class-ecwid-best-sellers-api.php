@@ -90,6 +90,9 @@ class Api
 		return !empty(get_option(ECWID_BS_PLUGIN_BASENAME . '_api_token'));
 	}
 
+	/**
+	 * @return array|mixed|null|object
+	 */
 	public function getOrders()
 	{
 		$result = Http_Helper::get(self::ECWID_API_URL . $this->storeId . '/orders', [
@@ -103,6 +106,10 @@ class Api
 			if ($badToken) {
 				update_option(ECWID_BS_PLUGIN_BASENAME . '_api_token', '');
 			}
+		} elseif ($result['response']['code'] !== '200') {
+			Messages::addError($result['response']['code']);
 		}
+
+		return json_decode($result['body']);
 	}
 }
