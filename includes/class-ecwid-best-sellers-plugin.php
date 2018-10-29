@@ -56,7 +56,7 @@ class Plugin
     {
         add_action('widgets_init', function() {
         	if (!empty($_GET['code'])) {
-		        (new Api())->getToken(htmlspecialchars($_GET['code']));
+		        (new Api())->getToken(htmlspecialchars($_GET['code'], ENT_COMPAT, 'utf-8'));
 	        }
 
             register_widget(Widget_List::class);

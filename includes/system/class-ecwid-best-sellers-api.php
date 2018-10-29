@@ -9,12 +9,23 @@ namespace Ecwid\Best_Sellers;
 class Api
 {
 	const ECWID_OAUTH_URL = 'https://my.ecwid.com/api/oauth/';
+	const ECWID_API_URL = 'https://app.ecwid.com/api/v3/';
+
+	private $storeId;
+	private $token;
+	private $publicToken;
+	private $email;
 
     public function __construct()
     {
         if (!defined('ECWID_BS_API_SECRET') || !defined('ECWID_BS_API_CLIENT_ID')) {
             Error::getInstance()->addError(__('Empty client id or secret code of Ecwid API', 'ecwid-best-sellers'));
         }
+
+	    $this->storeId = get_option(ECWID_BS_PLUGIN_BASENAME . '_store_id');
+	    $this->token = get_option(ECWID_BS_PLUGIN_BASENAME . '_api_token');
+	    $this->publicToken = get_option(ECWID_BS_PLUGIN_BASENAME . '_api_public_token');
+	    $this->email = get_option(ECWID_BS_PLUGIN_BASENAME . '_admin_email');
     }
 
 	/**
@@ -55,6 +66,7 @@ class Api
     	if ($result['response']['code'] == 200 && !empty($result['body'])) {
     		$body = json_decode($result['body']);
 		    update_option(ECWID_BS_PLUGIN_BASENAME . '_api_token', $body->access_token);
+		    update_option(ECWID_BS_PLUGIN_BASENAME . '_api_public_token', $body->public_token);
 		    update_option(ECWID_BS_PLUGIN_BASENAME . '_store_id', $body->store_id);
 		    update_option(ECWID_BS_PLUGIN_BASENAME . '_admin_email', $body->email);
 
@@ -76,5 +88,21 @@ class Api
 	public function hasAccess()
 	{
 		return !empty(get_option(ECWID_BS_PLUGIN_BASENAME . '_api_token'));
+	}
+
+	public function getOrders()
+	{
+		$result = Http_Helper::get(self::ECWID_API_URL . $this->storeId . '/orders', [
+			'token' => $this->token,
+		]);
+
+		if (!$result['body']) {
+			$response = $result['http_response']->get_response_object();
+			$badToken = (strpos($response->raw, '403 Token doesn\'t exist') !== false);
+
+			if ($badToken) {
+				update_option(ECWID_BS_PLUGIN_BASENAME . '_api_token', '');
+			}
+		}
 	}
 }

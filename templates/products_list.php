@@ -1,10 +1,17 @@
 <?php
 /**
  * @var \Ecwid\Best_Sellers\Product $products[]
+ * @var bool $has_access
  */
 ?>
 
-<?php if (!empty($products)): ?>
+<?php if (!$has_access) {
+    echo '<p style="color: red">';
+    _e('You should provide access to your Ecwid shop for using widget', 'ecwid-best-sellers');
+    echo '</p>';
+} ?>
+
+<?php if ($has_access && !empty($products)): ?>
     <section id="ecwidlatestproducts-3" class="widget widget_ecwidlatestproducts">
         <!-- noptimize -->
         <script data-cfasync="false" type="text/javascript" src="https://app.ecwid.com/script.js?15362109&amp;data_platform=wporg"></script>

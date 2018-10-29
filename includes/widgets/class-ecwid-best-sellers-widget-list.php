@@ -12,11 +12,15 @@ class Widget_List extends \WP_Widget
     const LIST_MAX_COUNT = 5;
     const LIST_DEFAULT_COUNT = 3;
 
+    private $api;
+
 	public function __construct() {
         $widget_ops = [
             'classname' => 'widget_ecwid_bs_list',
             'description' => __("Displays a list of best seller products from Ecwid shop", 'ecwid-best-sellers')
         ];
+        $this->api = new Api();
+
         parent::__construct('ecwid_bs_list', __('Best Sellers for Ecwid', 'ecwid-best-sellers'), $widget_ops);
 	}
 
@@ -40,6 +44,8 @@ class Widget_List extends \WP_Widget
                 echo $before_title . $title . $after_title;
             }
 
+            $this->api->getOrders();
+
             $product = new Product();
             $product->setId(123);
             $product->setName('Kinder Surprise');
@@ -48,7 +54,7 @@ class Widget_List extends \WP_Widget
             $product->setPrice(99.99);
             $products = [$product];
 
-            Template::renderTemplate('products_list', ['products' => $products]);
+            Template::renderTemplate('products_list', ['products' => $products, 'has_access' => $this->api->hasAccess()]);
         }
     }
 
@@ -64,9 +70,7 @@ class Widget_List extends \WP_Widget
 		    Error::getInstance()->showErrors();
 	    }
 
-        $api = new Api();
         $default_args = [];
-
         foreach ($this->getFormFields() as $field) {
             $default_args[$field['name']] = $field['default'];
         }
@@ -74,47 +78,30 @@ class Widget_List extends \WP_Widget
         $instance = wp_parse_args((array) $instance, $default_args);
 
         printf('<div class="%s">', $this->widget_options['classname']);
+
         foreach ($this->getFormFields() as $field) {
-            $template = '<p><label for="%s">%s:<input style="%s" id="%s" name="%s" type="text" value="%s" /></label></p>';
+        	$fieldName = $this->get_field_name($field['name']);
+        	$fieldTitle = $field['title'];
+        	$fieldId = $this->get_field_id($field['name']);
+        	$style = 'width:100%';
 
             if ($field['type'] == 'int') {
-                $value = intval($instance[$field['name']]);
+                Template::getTextFieldHtml($fieldName, $fieldTitle, $fieldId, intval($instance[$field['name']]), $style);
             } elseif ($field['type'] == 'list') {
-                $value = '';
-                $template = '<p><label for="%s">%s:<select style="%s" id="%s" name="%s">%s';
-
-                for ($val = 1;$val <= $field['max']; $val++) {
-                    $value .= '<option value="' . $val . '" ' . ($instance[$field['name']] == $val ? 'selected' : '') . ' >' . $val . '</option>';
-                }
-
-                $template .= '</select></label></p>';
+                Template::getSelectFieldHtml($fieldName, $fieldTitle, $fieldId, range(1, $field['max']), $instance[$field['name']], $style);
             } else {
-                $value = htmlspecialchars($instance[$field['name']]);
+	            Template::getTextFieldHtml($fieldName, $fieldTitle, $fieldId, htmlspecialchars($instance[$field['name']], ENT_COMPAT, 'utf-8'), $style);
             }
-
-            printf(
-                $template,
-                $this->get_field_name($field['name']),
-                $field['title'],
-                'width:100%',
-                $this->get_field_id($field['name']),
-                $this->get_field_name($field['name']),
-                $value
-            );
         }
         print('</div>');
 
-	    if (!$api->hasAccess()) {
+	    if (!$this->api->hasAccess()) {
             $popupBody = '<p><b>' . __('You should provide access to your Ecwid shop for using widget', 'ecwid-best-sellers') . '</b></p>';
-            $popupBody .= '<p style="text-align: center"><a href="' . $api->getOAuthLink( home_url() . $_SERVER['SCRIPT_NAME'])
-                . '" class="button button-primary" style="margin-bottom: 20px">'
-                . __('Provide access', 'ecwid-best-sellers') . '</a></p>';
+            $popupBody .= '<p style="text-align: center"><a href="' . $this->api->getOAuthLink( home_url() . $_SERVER['SCRIPT_NAME'])
+                                . '" class="button button-primary" style="margin-bottom: 20px">'
+                                . __('Provide access', 'ecwid-best-sellers') . '</a></p>';
 
-            printf(
-                '<script type="text/javascript">PopupEcwidBs.init(\'%s\', \'%s\')</script>',
-                $popupBody,
-                $this->widget_options['classname']
-            );
+            printf('<script type="text/javascript">PopupEcwidBs.init(\'%s\', \'%s\')</script>', $popupBody, $this->widget_options['classname']);
 	    }
     }
 
