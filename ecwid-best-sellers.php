@@ -7,9 +7,6 @@ Author: Oleg Pavlov
 Version: 1.0.0
 Author URI: https://vk.com/nameless4you
 */
-ini_set('error_reporting', E_ALL);
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
 use Ecwid\Best_Sellers\Plugin;
 
 load_plugin_textdomain( 'ecwid-best-sellers', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
