@@ -2,19 +2,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ecwid Best sellers\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-27 12:34+0000\n"
-"PO-Revision-Date: 2018-10-27 17:00+0400\n"
+"POT-Creation-Date: 2018-10-30 09:36+0000\n"
+"PO-Revision-Date: 2018-10-30 09:36+0000\n"
 "Language-Team: Русский\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2\n"
-"Last-Translator: admin <test@test.ru>\n"
-"Language: ru_RU\n"
+"X-Generator: Loco https://localise.biz/\n"
+"Last-Translator: nameless <test@mail.ru>\n"
+"Language: ru_RU"
 
-#: includes/class-ecwid-best-sellers-plugin.php:18
+#: includes/class-ecwid-best-sellers-plugin.php:15
 #, php-format
 msgid ""
 "<a href=\"%s\"><-- Back</a><br><br><p style=\"text-align: center\">You "
@@ -25,44 +25,48 @@ msgstr ""
 "установить и активировать плагин <a href=\"%s\" target=\"_blank\">Ecwid "
 "Shopping Cart</а></p>"
 
-#: includes/class-ecwid-best-sellers-plugin.php:39
+#: includes/class-ecwid-best-sellers-plugin.php:35
 #, php-format
 msgid ""
-"<b>Best Sellers for Ecwid</b>: You should install and activate <a href=\"%s"
-"\" target=\"_blank\">Ecwid Shopping Cart</a> plugin"
+"<b>Best Sellers for Ecwid</b>: You should install and activate <a "
+"href=\"%s\" target=\"_blank\">Ecwid Shopping Cart</a> plugin"
 msgstr ""
 "<b>Best Sellers for Ecwid</b>: Вы должны установить и активировать плагин <a "
 "href=\"%s\" target=\"_blank\">Ecwid Shopping Cart</a>"
-
-#: includes/system/class-ecwid-best-sellers-api.php:16
-msgid "Empty client id or secret code of Ecwid API"
-msgstr "Не указан client id или секретный код приложения"
 
 #: includes/system/class-ecwid-best-sellers-error.php:30
 msgid "Error: "
 msgstr "Ошибка: "
 
-#: includes/widgets/class-ecwid-best-sellers-widget-list.php:18
+#: includes/system/class-ecwid-best-sellers-api.php:22
+msgid "Empty client id or secret code of Ecwid API"
+msgstr "Не указан client id или секретный код приложения"
+
+#: includes/widgets/class-ecwid-best-sellers-widget-list.php:20
 msgid "Displays a list of best seller products from Ecwid shop"
 msgstr "Выводит самые продаваемые товары из магазина Ecwid"
 
 #. Name of the plugin
-#: includes/widgets/class-ecwid-best-sellers-widget-list.php:20
-#: includes/widgets/class-ecwid-best-sellers-widget-list.php:159
+#: includes/widgets/class-ecwid-best-sellers-widget-list.php:24
+#: includes/widgets/class-ecwid-best-sellers-widget-list.php:140
 msgid "Best Sellers for Ecwid"
 msgstr "Самые продаваемые товары Ecwid"
 
-#: includes/widgets/class-ecwid-best-sellers-widget-list.php:108
+#: includes/widgets/class-ecwid-best-sellers-widget-list.php:91
 msgid "You should provide access to your Ecwid shop for using widget"
 msgstr ""
 "Вы должны предоставить доступ к вашему магазину Ecwid для использования "
 "виджета"
 
-#: includes/widgets/class-ecwid-best-sellers-widget-list.php:111
+#: includes/widgets/class-ecwid-best-sellers-widget-list.php:94
 msgid "Provide access"
 msgstr "Предоставить доступ"
 
-#: includes/widgets/class-ecwid-best-sellers-widget-list.php:163
+#: includes/widgets/class-ecwid-best-sellers-widget-list.php:144
+msgid "Cache lifetime (sec)"
+msgstr "Время жизни кэша (сек.)"
+
+#: includes/widgets/class-ecwid-best-sellers-widget-list.php:150
 msgid "Number of products to show"
 msgstr "Количество выводимых товаров"
 

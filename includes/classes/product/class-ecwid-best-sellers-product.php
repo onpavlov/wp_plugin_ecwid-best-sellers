@@ -3,8 +3,9 @@
 namespace Ecwid\Best_Sellers;
 
 /**
- * Class Base_Product
+ * Class Product
  * @package Ecwid\Best_Sellers
+ *
  * @property int $id
  * @property string $name
  * @property string $link

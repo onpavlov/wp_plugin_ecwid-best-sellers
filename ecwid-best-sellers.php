@@ -22,7 +22,7 @@ require_once 'includes/autoload.php';
 require_once 'includes/assets.php';
 
 register_activation_hook(__FILE__, [Plugin::class, 'activate']);
-register_deactivation_hook(__FILE__, [Plugin::class, 'deactivate']);
-register_uninstall_hook(__FILE__, [Plugin::class, 'uninstall']);
+//register_deactivation_hook(__FILE__, [Plugin::class, 'deactivate']);
+//register_uninstall_hook(__FILE__, [Plugin::class, 'uninstall']);
 
 Plugin::init();

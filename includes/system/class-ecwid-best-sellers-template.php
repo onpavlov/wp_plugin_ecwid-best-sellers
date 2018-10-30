@@ -14,7 +14,7 @@ class Template
 	{
 		extract($variables);
 
-		require_once $_SERVER['DOCUMENT_ROOT'] . self::$templatePath . $template . '.php';
+		require $_SERVER['DOCUMENT_ROOT'] . self::$templatePath . $template . '.php';
 	}
 
 	/**

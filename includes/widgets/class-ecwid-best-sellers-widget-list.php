@@ -44,20 +44,7 @@ class Widget_List extends \WP_Widget
                 echo $before_title . $title . $after_title;
             }
 
-            $lastOrders = (new Orders($this->api))->getLastMonthOrders();
-            $productIds = [];
-
-	        foreach ($lastOrders as $order) {
-		        foreach ($order->items as $product) {
-					if ($product->productAvailable) {
-						$productIds[$product->productId] = isset($productIds[$product->productId])
-							? $productIds[$product->productId] + $product->quantity : $product->quantity;
-					}
-		        }
-            }
-
-	        arsort($productIds);
-	        $products = $this->filterProducts($productIds, $instance['number_of_products']);
+			$products = $this->getProducts($instance);
 
             Template::renderTemplate('products_list', ['products' => $products, 'has_access' => $this->api->hasAccess()]);
         }
@@ -119,6 +106,8 @@ class Widget_List extends \WP_Widget
      */
     public function update($new_instance, $instance)
     {
+    	Cache::reset('products_list');
+
         foreach ($this->getFormFields() as $field) {
             switch ($field['type']) {
                 case 'int':
@@ -150,6 +139,12 @@ class Widget_List extends \WP_Widget
                 'type' => 'text',
                 'default' => __('Best Sellers for Ecwid', 'ecwid-best-sellers'),
             ],
+	        [
+		        'name' => 'cache_ttl',
+		        'title' => __('Cache lifetime (sec)', 'ecwid-best-sellers'),
+		        'type' => 'int',
+		        'default' => 3600,
+	        ],
             [
                 'name' => 'number_of_products',
                 'title' => __('Number of products to show', 'ecwid-best-sellers'),
@@ -158,6 +153,36 @@ class Widget_List extends \WP_Widget
                 'max' => self::LIST_MAX_COUNT
             ]
         ];
+    }
+
+	/**
+	 * @param $instance
+	 *
+	 * @return array
+	 */
+    private function getProducts($instance)
+    {
+    	if ($result = Cache::get('products_list')) {
+    		return $result;
+	    }
+
+	    $lastOrders = (new Orders($this->api))->getLastMonthOrders();
+	    $productIds = [];
+
+	    foreach ($lastOrders as $order) {
+		    foreach ($order->items as $product) {
+			    if ($product->productAvailable) {
+				    $productIds[$product->productId] = isset($productIds[$product->productId])
+					    ? $productIds[$product->productId] + $product->quantity : $product->quantity;
+			    }
+		    }
+	    }
+
+	    arsort($productIds);
+	    $result = $this->filterProducts($productIds, $instance['number_of_products']);
+	    Cache::set('products_list', $result, $instance['cache_ttl']);
+
+	    return $result;
     }
 
 	/**

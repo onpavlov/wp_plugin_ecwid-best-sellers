@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ecwid Best sellers\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-27 12:34+0000\n"
+"POT-Creation-Date: 2018-10-30 09:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -14,7 +14,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/"
 
-#: includes/class-ecwid-best-sellers-plugin.php:18
+#: includes/class-ecwid-best-sellers-plugin.php:15
 #, php-format
 msgid ""
 "<a href=\"%s\"><-- Back</a><br><br><p style=\"text-align: center\">You "
@@ -22,40 +22,44 @@ msgid ""
 "Cart</a> plugin</p>"
 msgstr ""
 
-#: includes/class-ecwid-best-sellers-plugin.php:39
+#: includes/class-ecwid-best-sellers-plugin.php:35
 #, php-format
 msgid ""
 "<b>Best Sellers for Ecwid</b>: You should install and activate <a "
 "href=\"%s\" target=\"_blank\">Ecwid Shopping Cart</a> plugin"
 msgstr ""
 
-#: includes/system/class-ecwid-best-sellers-api.php:16
-msgid "Empty client id or secret code of Ecwid API"
-msgstr ""
-
 #: includes/system/class-ecwid-best-sellers-error.php:30
 msgid "Error: "
 msgstr ""
 
-#: includes/widgets/class-ecwid-best-sellers-widget-list.php:18
+#: includes/system/class-ecwid-best-sellers-api.php:22
+msgid "Empty client id or secret code of Ecwid API"
+msgstr ""
+
+#: includes/widgets/class-ecwid-best-sellers-widget-list.php:20
 msgid "Displays a list of best seller products from Ecwid shop"
 msgstr ""
 
 #. Name of the plugin
-#: includes/widgets/class-ecwid-best-sellers-widget-list.php:20
-#: includes/widgets/class-ecwid-best-sellers-widget-list.php:159
+#: includes/widgets/class-ecwid-best-sellers-widget-list.php:24
+#: includes/widgets/class-ecwid-best-sellers-widget-list.php:140
 msgid "Best Sellers for Ecwid"
 msgstr ""
 
-#: includes/widgets/class-ecwid-best-sellers-widget-list.php:108
+#: includes/widgets/class-ecwid-best-sellers-widget-list.php:91
 msgid "You should provide access to your Ecwid shop for using widget"
 msgstr ""
 
-#: includes/widgets/class-ecwid-best-sellers-widget-list.php:111
+#: includes/widgets/class-ecwid-best-sellers-widget-list.php:94
 msgid "Provide access"
 msgstr ""
 
-#: includes/widgets/class-ecwid-best-sellers-widget-list.php:163
+#: includes/widgets/class-ecwid-best-sellers-widget-list.php:144
+msgid "Cache lifetime (sec)"
+msgstr ""
+
+#: includes/widgets/class-ecwid-best-sellers-widget-list.php:150
 msgid "Number of products to show"
 msgstr ""
 
