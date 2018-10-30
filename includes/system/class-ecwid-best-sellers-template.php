@@ -8,13 +8,12 @@ namespace Ecwid\Best_Sellers;
  */
 class Template
 {
-	private static $templatePath = '/wp-content/plugins/' . ECWID_BS_PLUGIN_BASENAME . '/templates/';
+	private static $templatePath = '/templates/';
 
 	public static function renderTemplate($template, $variables = [])
 	{
 		extract($variables);
-
-		require $_SERVER['DOCUMENT_ROOT'] . self::$templatePath . $template . '.php';
+		require ECWID_BS_DIR . self::$templatePath . $template . '.php';
 	}
 
 	/**
