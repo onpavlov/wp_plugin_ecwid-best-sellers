@@ -4,10 +4,6 @@
  * searches and requires files named by pattern class-{plugin-name}-{class-name}.php
  */
 
-if (!function_exists( 'spl_autoload_register')) {
-    require_once ABSPATH . WPINC . '/spl-autoload-compat.php';
-}
-
 $require_paths = [
 	'/',
     '/system',
