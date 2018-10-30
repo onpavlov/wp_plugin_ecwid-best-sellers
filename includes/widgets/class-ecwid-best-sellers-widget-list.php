@@ -89,7 +89,7 @@ class Widget_List extends \WP_Widget
 
 	    if (!$this->api->hasAccess()) {
             $popupBody = '<p><b>' . __('You should provide access to your Ecwid shop for using widget', 'ecwid-best-sellers') . '</b></p>';
-            $popupBody .= '<p style="text-align: center"><a href="' . $this->api->getOAuthLink( home_url() . $_SERVER['SCRIPT_NAME'])
+            $popupBody .= '<p style="text-align: center"><a href="' . $this->api->getOAuthLink(admin_url('widgets.php'))
                                 . '" class="button button-primary" style="margin-bottom: 20px">'
                                 . __('Provide access', 'ecwid-best-sellers') . '</a></p>';
 
