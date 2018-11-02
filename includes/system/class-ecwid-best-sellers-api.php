@@ -59,7 +59,7 @@ class Api
 		    'client_id' => ECWID_BS_API_CLIENT_ID,
 		    'client_secret' => ECWID_BS_API_SECRET,
 		    'code' => $code,
-		    'redirect_uri' => home_url() . $_SERVER['SCRIPT_NAME'],
+		    'redirect_uri' => admin_url('widgets.php'),
 		    'grant_type' => 'authorization_code'
 	    ]);
 
