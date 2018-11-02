@@ -13,6 +13,7 @@ class Widget_List extends \WP_Widget
     const LIST_DEFAULT_COUNT = 3;
 
     private $api;
+    private $storeId;
 
 	public function __construct() {
         $widget_ops = [
@@ -20,6 +21,7 @@ class Widget_List extends \WP_Widget
             'description' => __("Displays a list of best seller products from Ecwid shop", 'ecwid-best-sellers')
         ];
         $this->api = new Api();
+        $this->storeId = get_option(ECWID_BS_PLUGIN_BASENAME . '_store_id');
 
         parent::__construct('ecwid_bs_list', __('Best Sellers for Ecwid', 'ecwid-best-sellers'), $widget_ops);
 	}
@@ -162,7 +164,7 @@ class Widget_List extends \WP_Widget
 	 */
     private function getProducts($instance)
     {
-    	if ($result = Cache::get('products_list')) {
+    	if ($result = Cache::get('products_list' . $this->storeId)) {
     		return $result;
 	    }
 
@@ -180,7 +182,7 @@ class Widget_List extends \WP_Widget
 
 	    arsort($productIds);
 	    $result = $this->filterProducts($productIds, $instance['number_of_products']);
-	    Cache::set('products_list', $result, $instance['cache_ttl']);
+	    Cache::set('products_list' . $this->storeId, $result, $instance['cache_ttl']);
 
 	    return $result;
     }

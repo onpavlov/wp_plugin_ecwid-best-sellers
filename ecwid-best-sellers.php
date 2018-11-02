@@ -17,6 +17,15 @@ define('ECWID_BS_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 update_option('ecwid_bs_plugin_version', ECWID_BS_VERSION);
 
+add_action('current_screen', function () {
+    $screen = get_current_screen();
+    $adminPage = $screen->base;
+
+    if ($adminPage === 'toplevel_page_ec-store' && isset($_GET['reconnect'])) {
+        update_option(ECWID_BS_PLUGIN_BASENAME . '_api_token', '');
+    }
+});
+
 require_once 'includes/const.php';
 require_once 'includes/autoload.php';
 require_once 'includes/assets.php';
